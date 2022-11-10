@@ -1,31 +1,52 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div v-if="loading">
+    <h1>Loading...</h1>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+
+  <div v-else>
+    <h1></h1>
+    <CatPicture :cat="currentCat" />
+    <button @click="nextCat">Next cat</button>
+  </div>
+  
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+<script lang="ts">
+import axios from 'axios'
+import CatPicture from './components/CatPicture.vue'
+
+export default {
+    data() {
+        return {
+            currentCat: {},
+            allCats: [],
+            likedCats: [],
+            dislikedCats: [],
+            catIndex: 0,
+            loading: true
+        };
+    },
+    methods: {
+        nextCat() {
+            this.catIndex++;
+            if (this.catIndex >= this.allCats.length) {
+                this.catIndex = 0;
+            }
+            this.currentCat = this.allCats[this.catIndex];
+        }
+    },
+    mounted() {
+        axios.get("https://api.thecatapi.com/v1/images/search?limit=10?api_key=XWCx21D3P9WZ7q4g7ypM1QEoXqxqzCWw4adRJhX2Ep4gAAVjZYe5Xgs4go0lHlbZ")
+            .then(response => {
+            this.allCats = response.data;
+            this.currentCat = response.data[this.catIndex];
+            this.loading = false;
+        })
+    },
+    components: { CatPicture }
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+</script>
+
+<style>
+
 </style>
