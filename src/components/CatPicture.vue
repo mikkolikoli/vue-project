@@ -5,26 +5,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType } from "vue";
 
 interface CatInterface {
-  id: string
-  url: string
-  width: number
-  height: number
-  breeds: [any]
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+  breeds: [any];
 }
 
 export default defineComponent({
   props: {
     cat: {
       cat: Object as PropType<CatInterface>,
-      required: true
-    } as any
-  }
-})
+      required: true,
+    } as any,
+  },
+});
 </script>
 
-<style>
-
-</style>
+<style></style>
