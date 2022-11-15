@@ -27,11 +27,17 @@ export default {
   methods: {
     likeCat() {
       this.$store.commit("addLiked", this.currentCat);
+      
+      this.loading = true;
       this.$store.commit("nextCat");
+      this.loading = false;
     },
     dislikeCat() {
       this.$store.commit("addDisliked", this.currentCat);
+
+      this.loading = true;
       this.$store.commit("nextCat");
+      this.loading = false;
     },
   },
   computed: {
