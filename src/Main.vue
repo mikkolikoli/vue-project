@@ -4,13 +4,28 @@
   </div>
 
   <div v-else>
-    <h1></h1>
-    <CatPicture :cat="currentCat" />
-    <button @click="likeCat">Like</button>
-    <button @click="dislikeCat">Dislike</button>
-    <br />
-    <button @click="this.$router.push('/liked')">Liked</button>
-    <button @click="this.$router.push('/disliked')">Disliked</button>
+    <header>
+      <h1>Rate the cat</h1>
+      <div class="headerButtons">
+        <button @click="this.$router.push('/liked')" class="linkButton">
+          Liked cats
+        </button>
+        <button @click="this.$router.push('/disliked')" class="linkButton">
+          Disliked cats
+        </button>
+      </div>
+    </header>
+
+    <article>
+      <CatPicture :cat="currentCat" :type="'normal'" />
+      <br />
+      <button @click="likeCat" class="iconButton">
+        <img src="./assets/like.svg" alt="Like" />
+      </button>
+      <button @click="dislikeCat" class="iconButton">
+        <img src="./assets/dislike.svg" alt="Dislike" />
+      </button>
+    </article>
   </div>
 </template>
 
@@ -26,7 +41,7 @@ export default {
   methods: {
     likeCat() {
       this.$store.commit("addLiked", this.currentCat);
-      
+
       this.loading = true;
       this.$store.commit("nextCat");
       this.loading = false;
@@ -51,8 +66,7 @@ export default {
     if (this.allCats.length === 0) {
       this.$store.commit("setCats");
       this.loading = false;
-    }
-    else {
+    } else {
       this.loading = false;
     }
   },
@@ -60,4 +74,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+header {
+  margin: 1em;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.5em;
+}
+</style>
