@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Disliked cats</h1>
+    <button @click="goBack">Go Back</button>
+    <h2>Disliked cats</h2>
     <ul>
       <li v-for="cat in dislikedCats" :key="cat.id">
         <CatPicture :cat="cat" />
@@ -13,13 +14,15 @@
 import CatPicture from "./components/CatPicture.vue";
 
 export default {
-  data() {
-    return {
-      disLikedCats: [],
-    } as any;
+  methods: {
+    goBack() {
+      this.$router.push("/");
+    },
   },
-  mounted() {
-    this.dislikedCats = this.$store.state.disLiked;
+  computed: {
+    dislikedCats() {
+      return this.$store.state.disliked;
+    },
   },
   components: { CatPicture },
 };

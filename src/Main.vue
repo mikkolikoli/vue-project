@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
 import CatPicture from "./components/CatPicture.vue";
 
 export default {
@@ -49,21 +48,13 @@ export default {
     },
   },
   mounted() {
-    axios
-      .get("https://api.thecatapi.com/v1/images/search?limit=10")
-      .then((response) => {
-        const allCats = response.data.map((cat: any) => {
-          return {
-            id: cat.id,
-            url: cat.url,
-            width: cat.width,
-            height: cat.height,
-          };
-        });
-        this.$store.commit("setCats", allCats);
-        this.$store.commit("setCurrentCat", allCats[0]);
-        this.loading = false;
-      });
+    if (this.allCats.length === 0) {
+      this.$store.commit("setCats");
+      this.loading = false;
+    }
+    else {
+      this.loading = false;
+    }
   },
   components: { CatPicture },
 };
