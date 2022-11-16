@@ -19,8 +19,8 @@ const router = createRouter({
   routes: routes,
 });
 
-const getNewCats = () => {
-  const response = axios.get("https://api.thecatapi.com/v1/images/search?limit=10")
+const getNewCats = async () => {
+  const response = await axios.get("https://api.thecatapi.com/v1/images/search?limit=10")
   return response;
 };
 
@@ -51,17 +51,17 @@ const store = createStore({
             height: cat.height,
           };
         });
+        state.currentCat = state.allCats[state.index];
       });
-
-      state.currentCat = state.allCats[state.index];
     },
     nextCat(state) {
       state.index++;
 
       if (state.index > 9) {
         state.index = 0;
+        
         getNewCats().then((response) => {
-          const debug = response.data.map((cat: any) => {
+          state.allCats = response.data.map((cat: any) => {
             return {
               id: cat.id,
               url: cat.url,
@@ -69,10 +69,12 @@ const store = createStore({
               height: cat.height,
             };
           });
-          console.log(debug);
+          state.currentCat = state.allCats[state.index];
         });
       }
-      state.currentCat = state.allCats[state.index];
+      else {
+        state.currentCat = state.allCats[state.index];
+      }
     },
   },
 });
