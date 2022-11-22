@@ -12,7 +12,7 @@ type Cat = {
   url: string;
   width: number;
   height: number;
-}
+};
 
 export default defineComponent({
   props: {

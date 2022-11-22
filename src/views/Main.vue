@@ -5,20 +5,19 @@
 
   <div v-else>
     <header>
-        <button @click="this.$router.push('/liked')" class="linkButton">
-          Liked cats
-        </button>
-        <button @click="this.$router.push('/disliked')" class="linkButton">
-          Disliked cats
-        </button>
+      <button @click="this.$router.push('/liked')" class="linkButton">
+        Liked cats
+      </button>
+      <button @click="this.$router.push('/disliked')" class="linkButton">
+        Disliked cats
+      </button>
       <h1>Rate the cat</h1>
-      
     </header>
 
     <article>
       <CatPicture :cat="currentCat" :type="'normal'" />
       <br />
-      
+
       <button @click="dislikeCat" class="iconButton">
         <img src="../assets/dislike.svg" alt="Dislike" />
       </button>

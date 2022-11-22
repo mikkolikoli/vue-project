@@ -5,7 +5,7 @@
   </header>
 
   <article>
-    <CatPicture  v-for="cat in dislikedCats" :key="cat.id" :cat="cat" />
+    <CatPicture v-for="cat in dislikedCats" :key="cat.id" :cat="cat" />
   </article>
 </template>
 

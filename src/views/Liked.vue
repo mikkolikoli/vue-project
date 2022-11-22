@@ -5,7 +5,12 @@
   </header>
 
   <article>
-    <CatPicture  v-for="cat in likedCats" :key="cat.id" :cat="cat" :type="'small'" />
+    <CatPicture
+      v-for="cat in likedCats"
+      :key="cat.id"
+      :cat="cat"
+      :type="'small'"
+    />
   </article>
 </template>
 
@@ -27,6 +32,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
