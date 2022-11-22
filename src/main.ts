@@ -1,9 +1,9 @@
 import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
-import Main from "./Main.vue";
-import Liked from "./Liked.vue";
-import Disliked from "./Disliked.vue";
+import Main from "./views/Main.vue";
+import Liked from "./views/Liked.vue";
+import Disliked from "./views/Disliked.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { createStore } from "vuex";
 import axios from "axios";
@@ -20,7 +20,9 @@ const router = createRouter({
 });
 
 const getNewCats = async () => {
-  const response = await axios.get("https://api.thecatapi.com/v1/images/search?limit=10")
+  const response = await axios.get(
+    "https://api.thecatapi.com/v1/images/search?limit=10"
+  );
   return response;
 };
 
@@ -59,7 +61,7 @@ const store = createStore({
 
       if (state.index > 9) {
         state.index = 0;
-        
+
         getNewCats().then((response) => {
           state.allCats = response.data.map((cat: any) => {
             return {
@@ -71,8 +73,7 @@ const store = createStore({
           });
           state.currentCat = state.allCats[state.index];
         });
-      }
-      else {
+      } else {
         state.currentCat = state.allCats[state.index];
       }
     },

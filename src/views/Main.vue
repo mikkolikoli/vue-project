@@ -5,32 +5,32 @@
 
   <div v-else>
     <header>
-      <h1>Rate the cat</h1>
-      <div class="headerButtons">
         <button @click="this.$router.push('/liked')" class="linkButton">
           Liked cats
         </button>
         <button @click="this.$router.push('/disliked')" class="linkButton">
           Disliked cats
         </button>
-      </div>
+      <h1>Rate the cat</h1>
+      
     </header>
 
     <article>
       <CatPicture :cat="currentCat" :type="'normal'" />
       <br />
-      <button @click="likeCat" class="iconButton">
-        <img src="./assets/like.svg" alt="Like" />
-      </button>
+      
       <button @click="dislikeCat" class="iconButton">
-        <img src="./assets/dislike.svg" alt="Dislike" />
+        <img src="../assets/dislike.svg" alt="Dislike" />
+      </button>
+      <button @click="likeCat" class="iconButton">
+        <img src="../assets/like.svg" alt="Like" />
       </button>
     </article>
   </div>
 </template>
 
 <script lang="ts">
-import CatPicture from "./components/CatPicture.vue";
+import CatPicture from "../components/CatPicture.vue";
 
 export default {
   data() {
@@ -74,16 +74,30 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 header {
   margin: 1em;
 }
 
-button {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0.5em;
+.linkButton {
+  background-color: #3a3a3a;
+  color: white;
+}
+
+.linkButton:hover {
+  background-color: #4f4f4f;
+}
+
+.iconButton {
+  background-color: transparent;
+}
+
+.iconButton:hover {
+  background-color: #282828;
+}
+
+.iconButton:focus,
+.iconButton:focus-visible {
+  outline: none;
 }
 </style>

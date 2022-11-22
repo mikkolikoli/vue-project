@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <button @click="goBack">Go Back</button>
+  <header>
+    <button @click="goBack" class="backButton">Go Back</button>
     <h2>Disliked cats</h2>
-    <ul>
-      <li v-for="cat in dislikedCats" :key="cat.id">
-        <CatPicture :cat="cat" />
-      </li>
-    </ul>
-  </div>
+  </header>
+
+  <article>
+    <CatPicture  v-for="cat in dislikedCats" :key="cat.id" :cat="cat" />
+  </article>
 </template>
 
 <script lang="ts">
-import CatPicture from "./components/CatPicture.vue";
+import CatPicture from "../components/CatPicture.vue";
 
 export default {
   methods: {
@@ -28,4 +27,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>
