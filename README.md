@@ -10,6 +10,7 @@ The cat pictures are fetched from https://thecatapi.com
 * Vue router
 
 ## Get started
- npm install
- npm run dev
-
+```bash
+npm install
+npm run dev
+```
