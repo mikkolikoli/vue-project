@@ -9,3 +9,7 @@ The cat pictures are fetched from https://thecatapi.com
 * Vuex for state management
 * Vue router
 
+## Get started
+ npm install
+ npm run dev
+
